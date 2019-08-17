@@ -92,7 +92,7 @@ public class ExampleTest {
     * 2.如果输入框被加了readonly属性，不能输入，则需要用JS来去掉readonly属性！
     */
     public void testUpload(String locator,String path){
-        WebElement load = this.locateElementByXpath(locator);
-        load.sendKeys(path);
+        //WebElement load = this.locateElementByXpath(locator);
+        //load.sendKeys(path);
     }
 }
