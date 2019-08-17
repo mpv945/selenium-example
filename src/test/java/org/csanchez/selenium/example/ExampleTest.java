@@ -54,7 +54,7 @@ public class ExampleTest {
         driver.get("https://www.baidu.com");
         System.out.println("开始测试");
         Thread.sleep(1000);
-        输入关键字搜索
+        //输入关键字搜索
         driver.findElement(By.cssSelector("input#kw")).sendKeys("谢海军");
         driver.findElement(By.cssSelector("input#su")).click();
         Thread.sleep(1000);
