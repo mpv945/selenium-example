@@ -65,7 +65,7 @@ public class ExampleTest {
         Thread.sleep(2000);
         
         // 抓取网页新闻
-        driver.get("https://www.163.com");
+        driver.navigate().to("https://www.163.com");
         try{
                 List<String> list_rul_hp = new ArrayList<>();
                 //获取网易新闻首页‘要闻’内容-url
@@ -91,7 +91,7 @@ public class ExampleTest {
                 for(String url: list_rul_hp){
                     System.out.println("---163 -second page- start---");
                     //WebDriver driver2 = getDriver(url);
-                    driver.get(url);
+                    driver.navigate().to(url);
                     //遍历刚才得到的网址，进入新闻详情页，解析新闻详细数据
                     System.out.println("---163 -second page--url:"+ url);
                     try{
