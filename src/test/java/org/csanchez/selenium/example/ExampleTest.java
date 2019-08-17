@@ -51,10 +51,10 @@ public class ExampleTest {
         Thread.sleep(SLEEP);
 
         // Find the text input element by its name
-        WebElement element = driver.findElement(By.name("q"));
+        WebElement element = driver.findElement(By.name("wd"));
 
         // Enter something to search for
-        element.sendKeys("Cheese!");
+        element.sendKeys("谢海军");
 
         Thread.sleep(SLEEP);
 
