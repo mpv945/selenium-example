@@ -76,12 +76,22 @@ public class ExampleTest {
 
         // Should see: "cheese! - Google Search"
         System.out.println("百度的Page title is: " + driver.getTitle());
-
+        
+        System.out.println("页面内容: " + driver.execute_script("return document.documentElement.outerHTML"));
     }
 
     @After
     public void tearDown() throws Exception {
         if (driver != null)
             driver.quit();
+    }
+    
+    /**操作 上传控件upload 参考https://www.cnblogs.com/puresoul/p/4286910.html
+    * 1.一般是把路他径直接sendKeys到这个输入框中
+    * 2.如果输入框被加了readonly属性，不能输入，则需要用JS来去掉readonly属性！
+    */
+    public void testUpload(String locator,String path){
+        WebElement load = this.locateElementByXpath(locator);
+        load.sendKeys(path);
     }
 }
