@@ -47,22 +47,22 @@ public class ExampleTest {
     @Test
     public void test() throws Exception {
         // 与浏览器同步非常重要，必须等待浏览器加载完毕
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        //driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         
         //打开目标地址
-        driver.get("https://www.baidu.com");
+        //driver.get("https://www.baidu.com");
         
-        Thread.sleep(1000);
+        //Thread.sleep(1000);
         //输入关键字搜索
-        driver.findElement(By.cssSelector("input#kw")).sendKeys("谢海军");
-        driver.findElement(By.cssSelector("input#su")).click();
-        Thread.sleep(1000);
-        driver.findElements(By.className("t")).forEach(x -> {
-            System.out.println(x.getText());
-        });
+        //driver.findElement(By.cssSelector("input#kw")).sendKeys("谢海军");
+        //driver.findElement(By.cssSelector("input#su")).click();
+        //Thread.sleep(1000);
+        //driver.findElements(By.className("t")).forEach(x -> {
+            //System.out.println(x.getText());
+        //});
         
         //暂停5秒钟后关闭
-        Thread.sleep(2000);
+        //Thread.sleep(2000);
         
         // 抓取网页新闻
         driver.navigate().to("https://www.163.com");
@@ -91,7 +91,7 @@ public class ExampleTest {
                 for(String url: list_rul_hp){
                     System.out.println("---163 -second page- start---");
                     //WebDriver driver2 = getDriver(url);
-                    driver.navigate().to(url);
+                    driver.git(url);
                     //遍历刚才得到的网址，进入新闻详情页，解析新闻详细数据
                     System.out.println("---163 -second page--url:"+ url);
                     try{
