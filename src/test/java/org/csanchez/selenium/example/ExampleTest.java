@@ -63,7 +63,7 @@ public class ExampleTest {
         });
         
         //暂停5秒钟后关闭
-        //Thread.sleep(2000);
+        Thread.sleep(20000);
         
         // 抓取网页新闻
         //driver.get("https://www.163.com");
