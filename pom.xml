@@ -9,7 +9,10 @@
   <name>Selenium Example</name>
   <description>Selenium Example</description>
 
-  <properties> 
+  <properties>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <maven.compiler.compilerVersion>1.8</maven.compiler.compilerVersion>
     <selenium.url>http://localhost:4444/wd/hub</selenium.url>
     <selenium.browser>firefox</selenium.browser>
     <sleep>10000</sleep>
