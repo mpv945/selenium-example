@@ -62,17 +62,17 @@ public class ExampleTest {
         element.submit();
 
         // Check the title of the page
-        System.out.println("Page title is: " + driver.getTitle());
+        // System.out.println("Page title is: " + driver.getTitle());
 
         // Google's search is rendered dynamically with JavaScript.
         // Wait for the page to load, timeout after 10 seconds
-        (new WebDriverWait(driver, 10)).until(new ExpectedCondition<Boolean>() {
-            public Boolean apply(WebDriver d) {
-                return d.getTitle().toLowerCase().startsWith("谢海军");
-            }
-        });
+        //(new WebDriverWait(driver, 10)).until(new ExpectedCondition<Boolean>() {
+            //public Boolean apply(WebDriver d) {
+                //return d.getTitle().toLowerCase().startsWith("谢海军");
+            //}
+        //});
 
-        Thread.sleep(SLEEP);
+        //Thread.sleep(SLEEP);
 
         // Should see: "cheese! - Google Search"
         System.out.println("百度的Page title is: " + driver.getTitle());
