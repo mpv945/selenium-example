@@ -88,41 +88,7 @@ public class ExampleTest {
                 //休眠（最好使用随机函数产生随机的休眠时间，来模拟浏览器被浏览的错觉）
                 Thread.sleep(2000);
             
-                for(String url: list_rul_hp){
-                    System.out.println("---163 -second page- start---");
-                    //WebDriver driver2 = getDriver(url);
-                    WebDriver driver2 = new RemoteWebDriver(new URL(SELENIUM_URL), capabilities);
-                    driver2.git(url);
-                    //遍历刚才得到的网址，进入新闻详情页，解析新闻详细数据
-                    System.out.println("---163 -second page--url:"+ url);
-                    try{
-                        //获取对应文章内容的div内的全部内容
-                        //没有找到更好的办法，就用最笨的，找到div的开始于结束 截取字符串。。。
-                        int start = driver2.getPageSource().indexOf("<div class=\"post_text\" id=\"endText\"");
-                        int end = driver2.getPageSource().indexOf("<div class=\"post_btmshare\">");
-                        //判断是否符合自己想要的数据的格式要求，找不到标记就跳过，以免程序死掉
-                        if(start >0 && end >0){
-                            //查看新闻源码 找到对应的标题，时间， 来源， 以及详细内容
-                            String header = driver2.findElement(By.className("post_content_main")).findElement(By.tagName("h1")).getText();
-                            String time_source = driver2.findElements(By.className("post_time_source")).get(0).getText();
-                            String time = time_source.substring(0,time_source.indexOf("来源")-1);
-                            String source = time_source.substring(time_source.indexOf("来源")+4,time_source.length());
-                            String article = driver2.getPageSource().substring(start,end);
-                            //输出，也可以根据自己的需求存储到数据库或者本地文件
-                            System.out.println("---163 -second page--url:"+ url);
-                            System.out.println("---163 -second page--header:"+header);
-                            System.out.println("---163 -second page--time:"+time);
-                            System.out.println("---163 -second page--source:"+source);
-                            System.out.println("---163 -second page--article:"+ article);
-                        }else
-                            System.out.println("---163 exception no such tag --start:"+start+"---end:"+end);
-                    }catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                    Thread.sleep(3000);
-                    //driver2.quit();
-                    System.out.println("---163 -second page- end---");
-                }
+               
                 //driver.quit();
                 System.out.println("---163 -home page- list.size:"+list.size());
                 System.out.println("---163 -home page- end---");
