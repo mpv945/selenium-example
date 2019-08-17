@@ -44,7 +44,7 @@ public class ExampleTest {
     @Test
     public void test() throws Exception {
         // And now use this to visit Google
-        driver.get("http://www.google.com");
+        driver.get("http://www.baidu.com");
         // Alternatively the same thing can be done like this
         // driver.navigate().to("http://www.google.com");
 
@@ -75,7 +75,7 @@ public class ExampleTest {
         Thread.sleep(SLEEP);
 
         // Should see: "cheese! - Google Search"
-        System.out.println("Page title is: " + driver.getTitle());
+        System.out.println("百度的Page title is: " + driver.getTitle());
 
     }
 
