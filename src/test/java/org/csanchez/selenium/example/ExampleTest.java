@@ -46,6 +46,7 @@ public class ExampleTest {
 
     @Test
     public void test() throws Exception {
+        System.out.println("开始测试");
         // 与浏览器同步非常重要，必须等待浏览器加载完毕
         //driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         
