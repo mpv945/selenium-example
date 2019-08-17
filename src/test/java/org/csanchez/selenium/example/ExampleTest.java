@@ -95,6 +95,7 @@ public class ExampleTest {
             System.out.println("---163 -home page- end---");
         }catch (Exception e) {
             //driver.quit();
+            e.printStackTrace();
             System.out.println("---163 exception1 end---");
         }
         // And now use this to visit Google
