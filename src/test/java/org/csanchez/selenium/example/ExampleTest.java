@@ -46,13 +46,13 @@ public class ExampleTest {
 
     @Test
     public void test() throws Exception {
-        System.out.println("开始测试");
+        
         // 与浏览器同步非常重要，必须等待浏览器加载完毕
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         
         //打开目标地址
         driver.get("https://www.baidu.com");
-        
+        System.out.println("开始测试");
         Thread.sleep(1000);
         输入关键字搜索
         driver.findElement(By.cssSelector("input#kw")).sendKeys("谢海军");
@@ -84,8 +84,8 @@ public class ExampleTest {
                         //|| href.contains("jiankang.163.com")){
                     //list_rul_hp.add(href);
                     //System.out.println("---163 -home page- url:"+href);
-                }
-            }
+                //}
+            //}
             //休眠（最好使用随机函数产生随机的休眠时间，来模拟浏览器被浏览的错觉）
             //Thread.sleep(2000);
 
