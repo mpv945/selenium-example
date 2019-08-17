@@ -134,6 +134,28 @@ public class ExampleTest {
         //System.out.println("搜索百度的后的页面源码: " + driver.getPageSource());
         //System.out.println("页面内容: " + driver.execute_script("return document.documentElement.outerHTML"));
     }
+    
+    @Test
+    public void test1() throws Exception {
+        
+        // 与浏览器同步非常重要，必须等待浏览器加载完毕
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        
+        //打开目标地址
+        driver.get("https://www.baidu.com");
+        System.out.println("开始测试");
+        Thread.sleep(1000);
+        //输入关键字搜索
+        driver.findElement(By.cssSelector("input#kw")).sendKeys("k8s");
+        driver.findElement(By.cssSelector("input#su")).click();
+        Thread.sleep(1000);
+        driver.findElements(By.className("t")).forEach(x -> {
+            System.out.println(x.getText());
+        });
+        
+        //暂停5秒钟后关闭
+        Thread.sleep(20000);
+    }
 
     @After
     public void tearDown() throws Exception {
