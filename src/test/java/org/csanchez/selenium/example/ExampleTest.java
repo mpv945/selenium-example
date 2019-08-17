@@ -43,23 +43,40 @@ public class ExampleTest {
 
     @Test
     public void test() throws Exception {
+        // 与浏览器同步非常重要，必须等待浏览器加载完毕
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        
+        //打开目标地址
+        driver.get("https://www.baidu.com");
+        
+        Thread.sleep(1000);
+        //输入关键字搜索
+        driver.findElement(By.cssSelector("input#kw")).sendKeys("谢海军");
+        driver.findElement(By.cssSelector("input#su")).click();
+        Thread.sleep(1000);
+        driver.findElements(By.className("t")).forEach(x -> {
+            System.out.println(x.getText());
+        });
+        
+        //暂停5秒钟后关闭
+        Thread.sleep(2000);
         // And now use this to visit Google
-        driver.get("http://www.baidu.com");
+        //driver.get("http://www.baidu.com");
         // Alternatively the same thing can be done like this
         // driver.navigate().to("http://www.google.com");
 
-        Thread.sleep(SLEEP);
+        //Thread.sleep(SLEEP);
 
         // Find the text input element by its name
-        WebElement element = driver.findElement(By.name("wd"));
+        //WebElement element = driver.findElement(By.name("wd"));
 
         // Enter something to search for
-        element.sendKeys("谢海军");
+        //element.sendKeys("谢海军");
 
-        Thread.sleep(SLEEP);
+        //Thread.sleep(SLEEP);
 
         // Now submit the form. WebDriver will find the form for us from the element
-        element.submit();
+        //element.submit();
 
         // Check the title of the page
         // System.out.println("Page title is: " + driver.getTitle());
@@ -75,8 +92,8 @@ public class ExampleTest {
         //Thread.sleep(SLEEP);
 
         // Should see: "cheese! - Google Search"
-        System.out.println("百度的Page title is: " + driver.getTitle());
-        System.out.println("搜索百度的后的页面源码: " + driver.getPageSource());
+        //System.out.println("百度的Page title is: " + driver.getTitle());
+        //System.out.println("搜索百度的后的页面源码: " + driver.getPageSource());
         //System.out.println("页面内容: " + driver.execute_script("return document.documentElement.outerHTML"));
     }
 
