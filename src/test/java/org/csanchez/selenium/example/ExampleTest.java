@@ -76,8 +76,8 @@ public class ExampleTest {
 
         // Should see: "cheese! - Google Search"
         System.out.println("百度的Page title is: " + driver.getTitle());
-        
-        System.out.println("页面内容: " + driver.execute_script("return document.documentElement.outerHTML"));
+        System.out.println("搜索百度的后的页面源码: " + driver.getPageSource());
+        //System.out.println("页面内容: " + driver.execute_script("return document.documentElement.outerHTML"));
     }
 
     @After
@@ -86,7 +86,8 @@ public class ExampleTest {
             driver.quit();
     }
     
-    /**操作 上传控件upload 参考https://www.cnblogs.com/puresoul/p/4286910.html
+    /**操作 上传控件upload 参考https://www.cnblogs.com/puresoul/p/4286910.html和https://www.cnblogs.com/wuyn/p/10057236.html
+    * https://blog.csdn.net/qq_22003641/article/details/79137327
     * 1.一般是把路他径直接sendKeys到这个输入框中
     * 2.如果输入框被加了readonly属性，不能输入，则需要用JS来去掉readonly属性！
     */
