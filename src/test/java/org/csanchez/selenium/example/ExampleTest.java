@@ -2,6 +2,8 @@ package org.csanchez.selenium.example;
 
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.After;
 import org.junit.Before;
@@ -61,6 +63,72 @@ public class ExampleTest {
         
         //暂停5秒钟后关闭
         Thread.sleep(2000);
+        
+        // 抓取网页新闻
+        driver.get("https://www.163.com");
+        try{
+                List<String> list_rul_hp = new ArrayList<>();
+                //获取网易新闻首页‘要闻’内容-url
+                //使用浏览器开发者工具 查看“要闻”的布局   找到对应li的上级div的classname
+                //使用driver的findElement方法 一步一步找到新闻链接的li标签的内容
+                List<WebElement> list = driver.findElement(By.className("newsdata_list "))
+                        .findElements(By.className("data_row"));
+                //遍历 所有抓到的链接
+                for(WebElement e: list){
+                    //获取a标签 并使用getAttribute得到对应的url
+                    String href = e.findElement(By.className("news_title")).findElement(By.tagName("a")).getAttribute("href");
+                    //这里可以过滤你希望抓的网址类型，这里方便解析只抓取了news、war、jiankang三个类别的新闻
+                    if(href.contains("news.163.com") 
+                            || href.contains("war.163.com")
+                            || href.contains("jiankang.163.com")){
+                        list_rul_hp.add(href);
+                        System.out.println("---163 -home page- url:"+href);
+                    }
+                }
+                //休眠（最好使用随机函数产生随机的休眠时间，来模拟浏览器被浏览的错觉）
+                Thread.sleep(2000);
+            
+                for(String url: list_rul_hp){
+                    System.out.println("---163 -second page- start---");
+                    //WebDriver driver2 = getDriver(url);
+                    driver.get(url);
+                    //遍历刚才得到的网址，进入新闻详情页，解析新闻详细数据
+                    System.out.println("---163 -second page--url:"+ url);
+                    try{
+                        //获取对应文章内容的div内的全部内容
+                        //没有找到更好的办法，就用最笨的，找到div的开始于结束 截取字符串。。。
+                        int start = driver.getPageSource().indexOf("<div class=\"post_text\" id=\"endText\"");
+                        int end = driver.getPageSource().indexOf("<div class=\"post_btmshare\">");
+                        //判断是否符合自己想要的数据的格式要求，找不到标记就跳过，以免程序死掉
+                        if(start >0 && end >0){
+                            //查看新闻源码 找到对应的标题，时间， 来源， 以及详细内容
+                            String header = driver.findElement(By.className("post_content_main")).findElement(By.tagName("h1")).getText();
+                            String time_source = driver.findElements(By.className("post_time_source")).get(0).getText();
+                            String time = time_source.substring(0,time_source.indexOf("来源")-1);
+                            String source = time_source.substring(time_source.indexOf("来源")+4,time_source.length());
+                            String article = driver.getPageSource().substring(start,end);
+                            //输出，也可以根据自己的需求存储到数据库或者本地文件
+                            System.out.println("---163 -second page--url:"+ url);
+                            System.out.println("---163 -second page--header:"+header);
+                            System.out.println("---163 -second page--time:"+time);
+                            System.out.println("---163 -second page--source:"+source);
+                            System.out.println("---163 -second page--article:"+ article);
+                        }else
+                            System.out.println("---163 exception no such tag --start:"+start+"---end:"+end);
+                    }catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    Thread.sleep(3000);
+                    //driver2.quit();
+                    System.out.println("---163 -second page- end---");
+                }
+                //driver.quit();
+                System.out.println("---163 -home page- list.size:"+list.size());
+                System.out.println("---163 -home page- end---");
+            }catch (Exception e) {
+                //driver.quit();
+                System.out.println("---163 exception1 end---");
+            }
         // And now use this to visit Google
         //driver.get("http://www.baidu.com");
         // Alternatively the same thing can be done like this
