@@ -48,7 +48,7 @@ public class ExampleTest {
     public void test() throws Exception {
         System.out.println("开始测试");
         // 与浏览器同步非常重要，必须等待浏览器加载完毕
-        //driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         
         //打开目标地址
         //driver.get("https://www.baidu.com");
@@ -68,35 +68,35 @@ public class ExampleTest {
         // 抓取网页新闻
         driver.get("https://www.163.com");
         try{
-                List<String> list_rul_hp = new ArrayList<>();
-                //获取网易新闻首页‘要闻’内容-url
-                //使用浏览器开发者工具 查看“要闻”的布局   找到对应li的上级div的classname
-                //使用driver的findElement方法 一步一步找到新闻链接的li标签的内容
-                List<WebElement> list = driver.findElement(By.className("bd"))
-                        .findElements(By.tagName("li"));
-                //遍历 所有抓到的链接
-                for(WebElement e: list){
-                    //获取a标签 并使用getAttribute得到对应的url
-                    String href = e.findElement(By.tagName("a")).getAttribute("href");
-                    //这里可以过滤你希望抓的网址类型，这里方便解析只抓取了news、war、jiankang三个类别的新闻
-                    if(href.contains("news.163.com") 
-                            || href.contains("war.163.com")
-                            || href.contains("jiankang.163.com")){
-                        list_rul_hp.add(href);
-                        System.out.println("---163 -home page- url:"+href);
-                    }
+            List<String> list_rul_hp = new ArrayList<>();
+            //获取网易新闻首页‘要闻’内容-url
+            //使用浏览器开发者工具 查看“要闻”的布局   找到对应li的上级div的classname
+            //使用driver的findElement方法 一步一步找到新闻链接的li标签的内容
+            List<WebElement> list = driver.findElement(By.className("bd"))
+                    .findElements(By.tagName("li"));
+            //遍历 所有抓到的链接
+            for(WebElement e: list){
+                //获取a标签 并使用getAttribute得到对应的url
+                String href = e.findElement(By.tagName("a")).getAttribute("href");
+                //这里可以过滤你希望抓的网址类型，这里方便解析只抓取了news、war、jiankang三个类别的新闻
+                if(href.contains("news.163.com") 
+                        || href.contains("war.163.com")
+                        || href.contains("jiankang.163.com")){
+                    list_rul_hp.add(href);
+                    System.out.println("---163 -home page- url:"+href);
                 }
-                //休眠（最好使用随机函数产生随机的休眠时间，来模拟浏览器被浏览的错觉）
-                Thread.sleep(2000);
-            
-               
-                //driver.quit();
-                System.out.println("---163 -home page- list.size:"+list.size());
-                System.out.println("---163 -home page- end---");
-            }catch (Exception e) {
-                //driver.quit();
-                System.out.println("---163 exception1 end---");
             }
+            //休眠（最好使用随机函数产生随机的休眠时间，来模拟浏览器被浏览的错觉）
+            Thread.sleep(2000);
+
+
+            //driver.quit();
+            System.out.println("---163 -home page- list.size:"+list.size());
+            System.out.println("---163 -home page- end---");
+        }catch (Exception e) {
+            //driver.quit();
+            System.out.println("---163 exception1 end---");
+        }
         // And now use this to visit Google
         //driver.get("http://www.baidu.com");
         // Alternatively the same thing can be done like this
